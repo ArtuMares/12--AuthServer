@@ -16,17 +16,19 @@ export class RegisterComponent  {
   constructor(private fb:FormBuilder, private router:Router, private as:AuthService) { }
 
   miFormulario:FormGroup = this.fb.group({
-    name:["Test4", [Validators.required]],
-    email: ["test4@test.com", [Validators.required, Validators.email]],
-    password: ["123456", [Validators.required, Validators.minLength(6)]],
+    name:["", [Validators.required]],
+    email: ["", [Validators.required, Validators.email]],
+    password: ["", [Validators.required, Validators.minLength(6)]],
+    registro: ["", [Validators.required]],
+    carrera: ["", [Validators.required]],
   });
 
   nuevoUsuario(){
-    const {name, email, password} = this.miFormulario.value;
-    this.as.registro(name, email, password).subscribe(ok=>{
+    const {name, email, password, registro, carrera} = this.miFormulario.value;
+    this.as.registro(name, email, password, registro, carrera).subscribe(ok=>{
       console.log(ok);
       if(ok === true){
-        this.router.navigateByUrl("/dashboard");
+        this.router.navigateByUrl("./dashboard");
       }else{
         Swal.fire("Error", ok, "error")
       }

@@ -21,9 +21,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  registro(name:string,email:string, password:string){
+  registro(name:string,email:string, password:string, registro:string, carrera:string, role:string="ALUMNO"){
     const url= `${this.baseUrl}/auth/new`;
-    const body= {name, email, password};
+    const body= {name, email, password, registro, carrera, role};
 
     return this.http.post<AuthResponse>(url, body).pipe(
       tap(resp=>{
@@ -33,13 +33,17 @@ export class AuthService {
           this._usuario={
             name: resp.name!,
             email: resp.email!,
-            uid: resp.uid!
+            uid: resp.uid!,
+            registro: resp.registro!,
+            carrera: resp.carrera!,
+            role: resp.role!
           }
         }
       }),map(resp=> resp.ok),
       catchError(err=> of(err.error.msg))
     )
   }
+
 
   login(email: string, password: string) {
     const url = `${this.baseUrl}/auth`
@@ -52,7 +56,10 @@ export class AuthService {
           this._usuario = {
             name: resp.name!,
             email: resp.email!,
-            uid: resp.uid!
+            uid: resp.uid!,
+            registro: resp.registro!,
+            carrera: resp.carrera!,
+            role: resp.role!
           }
         }
       }),
@@ -71,7 +78,10 @@ export class AuthService {
           this._usuario = {
             name: resp.name!,
             email: resp.email!,
-            uid: resp.uid!
+            uid: resp.uid!,
+            registro: resp.registro!,
+            carrera: resp.carrera!,
+            role: resp.role!
           }
           return resp.ok;
         }), catchError(err => of(false)));

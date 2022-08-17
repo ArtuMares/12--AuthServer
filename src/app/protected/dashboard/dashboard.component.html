@@ -1,12 +1,17 @@
 <h1>Dashboard</h1>
 <hr>
+<div class="container">
+    <div class="col-12">    
+        <div class="card col-5">
+            <div class="card-body">
+                <h5 class="card-title"><b>{{usuario.name}}</b></h5>
+                Email del usuario: <b>{{usuario.email}}</b> <br>
+                Carrera del usuario: <b>{{usuario.carrera}}</b> <br>
+                No. de registro del usuario: <b>{{usuario.registro}}</b> <br>
+                Role del usuario: <b>{{usuario.role | titlecase}}</b>  <br>
+            </div>
 
-<p>
-    Esta página sólo funciona si estás autenticado
-</p>
-
-<h4>User info:</h4>
-
-<pre>{{usuario |json}}</pre>
-
-<button (click)="logout()">Logout</button>
+        </div>
+        <button class="btn btn-primary" (click)="logout()">Logout</button>
+    </div>
+</div>

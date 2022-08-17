@@ -15,8 +15,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent  {
 
   miFormulario: FormGroup = this.fb.group({
-    email: ["Test1@test.com", [Validators.required, Validators.email]],
-    password: ["123456", [Validators.required, Validators.minLength(6)]],
+    email: ["a20310022@gmail.com", [Validators.required, Validators.email]],
+    password: ["20310022", [Validators.required, Validators.minLength(6)]],
 
   })
 
